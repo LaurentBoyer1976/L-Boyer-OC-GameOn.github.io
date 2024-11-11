@@ -60,8 +60,8 @@ function handleInteraction(event){
 function launchModal() {
   validationBox.style.display ='none'
   heroContentSection.style.visibility ='hidden'
-  navBar.style.display ='none'
-  footerSite.style.display ='none'
+  navBar.style.visibility ='hidden'
+  footerSite.style.visibility ='hidden'
   modalbg.style.display = "block";
   formulaireReservation.style.display='block'
 }
@@ -69,8 +69,8 @@ function launchModal() {
 // close modal form
 function closeModal(){
   heroContentSection.style.visibility ='visible'
-  navBar.style.display ='initial'
-  footerSite.style.display ='initial'
+  navBar.style.visibility ='visible'
+  footerSite.style.visibility ='visible'
   modalbg.style.display = "none";
 }
 
