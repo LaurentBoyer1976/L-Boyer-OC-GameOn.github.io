@@ -3,9 +3,7 @@ const modalbg = document.querySelector(".bground")
 const modalBody = document.querySelector(".modal-body")
 const modalBtn = document.querySelectorAll(".modal-btn")
 const formData = document.querySelectorAll(".formData")
-const controlTextInput =document.querySelector('.text-control')
 const formulaireReservation = document.getElementById('reservationForm')
-const champsInput = document.querySelector('input')
 const openModalBtn = document.getElementById("openModalBtn")
 const closeModalBtn = document.querySelector(".close")
 const firstName = document.getElementById ("first")
@@ -18,7 +16,7 @@ const radioBtnLocationChoice = document.querySelectorAll('#inputFormDataBtnRadio
 const containerCheckBox__CGU = document.getElementById('containerCheckBox__CGU')
 const checkBoxCGU = document.getElementById("checkbox1")
 const checkBoxNewsLetter = document.getElementById("checkbox2")
-const btnSubmitButton = document.getElementById('btnSubmitButton')
+const btnSubmitFrom = document.getElementById('btnSubmitForm')
 const errorElement = document.createElement("span")
 // Sélectionner les boutons radio par leur ID
 const radioBtnLocation1 = document.getElementById("location1");
@@ -41,7 +39,19 @@ function editNav() {
     x.className = "topnav";
   }
 }
+// Fonction d'interaction tactile et souris
 
+function handleInteraction(event){
+  if (event.type === 'click' || event.type === 'touchstart') {
+    if (event.target === openModalBtn) {
+      // Ouvrir la modale
+      launchModal();
+    } else if (event.target === closeModalBtn || event.target === closeFormBtn) {
+      // Fermer la modale
+      closeModal();
+    }
+  }
+}
 //Fonction d'ouverture et de fermeture de la modal(formulaire)
 // launch modal form
 function launchModal() {
@@ -184,7 +194,7 @@ function initRadioButtonListeners() {
  */
 function btnCheckBox(){  
     if(!checkBoxCGU.checked){
-      throw new Error (messageErreurCheckBoxRadio(errorElement , btnSubmitButton, "Vous devez vérifier que vous acceptez les termes et conditions."))                           
+      throw new Error (messageErreurCheckBoxRadio(errorElement , btnSubmitFrom, "Vous devez vérifier que vous acceptez les termes et conditions."))                           
     } else {
       // Si la case est cochée, on supprime le message d'erreur s'il existe déjà
       if (errorElement.parentNode) {
@@ -272,20 +282,17 @@ function sendForm(){
     }
   })
 }
-  
 
 // appel des fonctions pour le formulaire
 
 // launch modal event
-openModalBtn.addEventListener ("click", () => {
-    launchModal()
-})
+modalBtn.forEach((btn) => btn.addEventListener("pointerup", launchModal));
 //close modal event
-closeModalBtn.addEventListener ("click", () => {
+closeModalBtn.addEventListener ("pointerdown", () => {
     closeModal()
 })
 //close Modal validation Message
-closeFormBtn.addEventListener('click', () => {
+closeFormBtn.addEventListener('pointerdown', () => {
   closeModal()
 })
 
