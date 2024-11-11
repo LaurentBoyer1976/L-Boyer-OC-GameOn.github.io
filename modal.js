@@ -1,4 +1,7 @@
 // DOM Elements et variables
+const heroContentSection = document.querySelector('.hero-section')
+const navBar = document.querySelector('.topnav')
+const footerSite = document.querySelector('footer')
 const modalbg = document.querySelector(".bground")
 const modalBody = document.querySelector(".modal-body")
 const modalBtn = document.querySelectorAll(".modal-btn")
@@ -56,12 +59,18 @@ function handleInteraction(event){
 // launch modal form
 function launchModal() {
   validationBox.style.display ='none'
+  heroContentSection.style.visibility ='hidden'
+  navBar.style.display ='none'
+  footerSite.style.display ='none'
   modalbg.style.display = "block";
   formulaireReservation.style.display='block'
 }
 
 // close modal form
 function closeModal(){
+  heroContentSection.style.visibility ='visible'
+  navBar.style.display ='initial'
+  footerSite.style.display ='initial'
   modalbg.style.display = "none";
 }
 
@@ -286,7 +295,7 @@ function sendForm(){
 // appel des fonctions pour le formulaire
 
 // launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("pointerup", launchModal));
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 //close modal event
 closeModalBtn.addEventListener ("pointerdown", () => {
     closeModal()
