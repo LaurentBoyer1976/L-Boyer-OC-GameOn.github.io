@@ -14,6 +14,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  /* Ces propriétés sont commentés car elle génère une erreur dans l'inspecteur des navigateurs*/
   /*background-image: url("bg_img.jpg");*/
   /*background-image: url("background.png");*/
   font-family: var(--font-default);

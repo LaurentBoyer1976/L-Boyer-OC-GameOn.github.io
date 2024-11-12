@@ -33,7 +33,8 @@ const messageDiv = messageBox ()
 const closeFormBtn = closeFormRedBtn ()
 const validationBox = validationDivPBtn(messageDiv, closeFormBtn)
 
-
+//Fonction permettant de créer le menu "burger" dans la barre de navigation en résolution mobile
+//Ajoute une class pour gérer l'apparence et le fonctionnement de la barre de navigation.
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -42,19 +43,7 @@ function editNav() {
     x.className = "topnav";
   }
 }
-// Fonction d'interaction tactile et souris
 
-function handleInteraction(event){
-  if (event.type === 'click' || event.type === 'touchstart') {
-    if (event.target === openModalBtn) {
-      // Ouvrir la modale
-      launchModal();
-    } else if (event.target === closeModalBtn || event.target === closeFormBtn) {
-      // Fermer la modale
-      closeModal();
-    }
-  }
-}
 //Fonction d'ouverture et de fermeture de la modal(formulaire)
 // launch modal form
 function launchModal() {
@@ -65,7 +54,6 @@ function launchModal() {
   modalbg.style.display = "block";
   formulaireReservation.style.display='block'
 }
-
 // close modal form
 function closeModal(){
   heroContentSection.style.visibility ='visible'
@@ -73,13 +61,23 @@ function closeModal(){
   footerSite.style.visibility ='visible'
   modalbg.style.display = "none";
 }
-
+//Fonction de création des messages de champs en erreurs et bordure input
 //Fonction de création de bordure sur input en erreur.
+/**
+ * 
+ * @param {element Html} element : Le champs de saisie dans le formulaire.
+ */
 function inputErrorRedBorder(element){
   element.classList.add('error');
   element.setAttribute('data-error-visible', 'true')
 }
 //Fonction de création du message d'erreur.
+/**
+ * 
+ * @param {element Html} elementCreate : L'élément HTML contenant le message d'erreur.
+ * @param {Element Html} elementParent : L'élément parent permettant d'implémenter le message au bon endroit.
+ * @param {element Html} errorMessage  : Le message de l'élément en erreur envoyé par le throw de la fonction gérant le champs en erreur.
+ */
 function messageErreurSaisie(elementCreate , elementParent, errorMessage){
       elementCreate.classList.add('formData', 'error');
       elementCreate.setAttribute('data-error', errorMessage);     
@@ -87,6 +85,12 @@ function messageErreurSaisie(elementCreate , elementParent, errorMessage){
       elementParent.parentNode.appendChild(elementCreate);
 }
 //Fonction de création du message d'erreur bouton radio et checkbox.
+/**
+ * 
+ * @param {element Html} elementCreate : L'élément HTML contenant le message d'erreur.
+ * @param {Element Html} elementParent : L'élément parent permettant d'implémenter le message au bon endroit.
+ * @param {element Html} errorMessage  : Le message de l'élément en erreur envoyé par le throw de la fonction gérant le champs en erreur.
+ */
 function messageErreurCheckBoxRadio(elementCreate , elementParent, errorMessage){
     elementCreate.classList.add('formData', 'error');
     elementCreate.setAttribute('data-error', errorMessage);     
@@ -126,7 +130,6 @@ function validerNom(last){
     lastName.setAttribute('data-error-visible', 'false')
   }     
 }
-
 /**
 * Cette fonction prend un email en paramètre et valide qu'il est au bon format
 * @param {string} email : le mail du joueur
@@ -142,17 +145,14 @@ function validerEmail(email){
     userMail.setAttribute('data-error-visible', 'false')
   }   
 }
-
 //Fonction de validation de la date de naissance du joueur.
 /**
  * Cette fonction prend la date de naissance du joueur et valide qu'elle est au bon format jj/mm/aaaa bissextil et jour dans le mois inclus.
  * @param {string} birthDate : la date de naissance du joueur
  * @throws {Error}
  */
-function dateNaissance(birthDate){  
-    
-  if(!birthDate){
-    
+function dateNaissance(birthDate){      
+  if(!birthDate){    
     throw new Error ( 
     messageErreurSaisie(errorElement, birthDateInput, "Vous devez entrer votre date de naissance."),
     inputErrorRedBorder(birthDateInput) 
@@ -161,8 +161,7 @@ function dateNaissance(birthDate){
     // Supprime la classe 'error' si elle existe
     birthDateInput.setAttribute('data-error-visible', 'false')
   }                                    
-}           
- 
+}            
 //Fonction de validation du nombre de concours joué.
 /**
  * Cette fonction prend une quantité en paramètre et valide qu'elle est au bon format
@@ -194,7 +193,6 @@ function initRadioButtonListeners() {
       });
     });       
 }
-
 //Fonction de verification de la case à cochée CGU
 /**
  * Cette fonction prend 
@@ -211,7 +209,11 @@ function btnCheckBox(){
       }
     }  
 }
-
+//Fonctions de créations du message de validation d'envoi du formulaire
+// Fonction créant le l'élément contenant le message de validation d'envoi du formulaire.
+/**
+ * @returns messageDiv l'élément créé pour le message de validation
+ */
 function messageBox (){
   const messageDiv = document.createElement ('div')
   const confirmationMessage = document.createElement('p')
@@ -222,14 +224,23 @@ function messageBox (){
   messageDiv.appendChild(confirmationMessage)
   return messageDiv
 }
-
+// Fonction créant le bouton rouge pour fermer la modal une fois le message de validation affiché.
+/**
+ * @returns closeFormBtn, le bouton de fermeture de la modal formulaire envoyé
+ */
 function closeFormRedBtn (){
   const closeFormBtn = document.createElement ('button')
   closeFormBtn.classList.add('btn-submit', 'button')  
   closeFormBtn.textContent = 'Fermer'
   return closeFormBtn
 }
-
+// Fonction pour l'élément container prenant la place du formulaire dans la modal.
+/**
+ * cette fonction prend
+ * @param {*} message : la fonction de l'élément contenant le message
+ * @param {*} button : la fonction de l'élément créant le bouton de fermeture du message et de la modal
+ * @returns validationDiv
+ */
 function validationDivPBtn(message, button){
   const validationDiv = document.createElement ('div')      
   validationDiv.classList.add('modal-body')   
@@ -242,28 +253,36 @@ function validationDivPBtn(message, button){
   validationDiv.appendChild(button)  
   return validationDiv   
 }
-
-
+//Fonction permettant de mettre à l'écran le message de validation à la place du formulaire.
+//Cette fonction permet de vider l'ensemble des champs et de décocher les bouton radio et les checkbox
+/**
+ * La fonction ne prend pas de paramètre.
+ */
 function validationMessage() {
   //Selection des éléments ayant la class : "formData"
   const textControl = formulaireReservation.querySelectorAll('.text-control')
   const checkBoxRadioBtn = formulaireReservation.querySelectorAll('.checkbox-input')
-  
   // Parcours les éléments du formulaire
+  // Vide les éléments du formulaire après l'envoi
   textControl.forEach (element => {
     element.value = '';
   })    
     checkBoxRadioBtn.forEach(checkbox => {
       checkbox.checked= false
   })
+  //Place le formulaire en display none et implémente l'element contenant le message de validation
   formulaireReservation.style.display='none'  
   modalBody.parentNode.appendChild(validationBox)
-  validationBox.style.display = 'flex'
-   
+  validationBox.style.display = 'flex'  
 }
 
      
-// fonction de soumission du formulaire
+// Fonction de soumission du formulaire.
+// La fonction test les entrées et en cas d'erreur lève une exception avec le catch.
+// retourne true si les validations sont passées avec succès et false en cas d'erreur.
+/**
+ * @returns true ou false en fonction des règles de validations 
+ */
 function validationForm(){ 
     
       try{
@@ -275,13 +294,16 @@ function validationForm(){
         initRadioButtonListeners()
         isRadioButtonSelected()
         btnCheckBox()
-       return true                                  
+          return true                                  
       }     
       catch(erreur) {
-      return false       
-      }
-  
+        return false       
+      }  
 }
+//Fonction permettant d'envoyé le formulaire si se dernier ne comporte pas d'erreur de saisie.
+/**
+ * La fonction ne prend aucun paramètre.
+ */
 function sendForm(){  
   formulaireReservation.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -292,7 +314,7 @@ function sendForm(){
   })
 }
 
-// appel des fonctions pour le formulaire
+// Appel des fonctions pour la modal et la soumission du formulaire
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
