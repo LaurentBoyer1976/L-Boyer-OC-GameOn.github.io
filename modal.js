@@ -136,7 +136,9 @@ function validerNom(last){
 * @throws {Error}
 */
 function validerEmail(email){
+  
   let regexMail = new RegExp ("[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9._-]+")
+
   if(!regexMail.test(email)){
     throw new Error (messageErreurSaisie(errorElement, userMail, "L'email saisi n'est pas valide"),
     inputErrorRedBorder(userMail))    
@@ -145,6 +147,7 @@ function validerEmail(email){
     userMail.setAttribute('data-error-visible', 'false')
   }   
 }
+
 //Fonction de validation de la date de naissance du joueur.
 /**
  * Cette fonction prend la date de naissance du joueur et valide qu'elle est au bon format jj/mm/aaaa bissextil et jour dans le mois inclus.
