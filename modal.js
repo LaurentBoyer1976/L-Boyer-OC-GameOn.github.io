@@ -29,8 +29,8 @@ const radioBtnLocation4 = document.getElementById("location4");
 const radioBtnLocation5 = document.getElementById("location5");
 const radioBtnLocation6 = document.getElementById("location6");
 // Variables modal message de validation
-const messageDiv = messageBox ()
-const closeFormBtn = closeFormRedBtn ()
+const messageDiv = messageBox()
+const closeFormBtn = closeFormRedBtn()
 const validationBox = validationDivPBtn(messageDiv, closeFormBtn)
 
 //Fonction permettant de créer le menu "burger" dans la barre de navigation en résolution mobile
@@ -44,16 +44,33 @@ function editNav() {
   }
 }
 
+//Fonction de calcul de la largeur de l'écran
+function handleResize() {
+  const windowWidth = window.innerWidth;
+  const breakpoint = 768; // Adaptez ce seuil à vos besoins
+
+  if (windowWidth < breakpoint) {
+    navBar.style.visibility ='visible' // Afficher la navbar
+  } else {
+    navBar.style.visibility ='hidden' // Masquer la navbar
+  }
+}
+
 //Fonction d'ouverture et de fermeture de la modal(formulaire)
 // launch modal form
-function launchModal() {
+function launchModal() {  
+  handleResize(); 
   validationBox.style.display ='none'
-  heroContentSection.style.visibility ='hidden'
-  navBar.style.visibility ='hidden'
+  heroContentSection.style.visibility ='hidden'  
   footerSite.style.visibility ='hidden'
   modalbg.style.display = "block";
   formulaireReservation.style.display='block'
 }
+
+// Écouter l'événement de redimensionnement
+window.addEventListener('resize', handleResize);
+
+
 // close modal form
 function closeModal(){
   heroContentSection.style.visibility ='visible'
