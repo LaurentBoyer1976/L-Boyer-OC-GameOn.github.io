@@ -167,7 +167,7 @@ function validerEmail(email){
 
 //Fonction de validation de la date de naissance du joueur.
 /**
- * Cette fonction prend la date de naissance du joueur et valide qu'elle est au bon format jj/mm/aaaa bissextil et jour dans le mois inclus.
+ * Cette fonction prend la date de naissance du joueur et valide qu'elle est au bon format jj/mm/aaaa
  * @param {string} birthDate : la date de naissance du joueur
  * @throws {Error}
  */
