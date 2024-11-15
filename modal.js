@@ -229,6 +229,19 @@ function btnCheckBox(){
       }
     }  
 }
+
+//Fonction pour récupérer la valeur true ou false de la #checkbox 2
+/**
+ * @param {boolean} checkBoxNewsLetter : la case est coché ou non
+ * @returns {boolean} : true or false
+ */
+function checkBoxInfoMail(){
+  if(checkBoxNewsLetter.checked){
+    return true 
+  } else {
+    return false
+  } 
+}
 //Fonctions de créations du message de validation d'envoi du formulaire
 // Fonction créant le l'élément contenant le message de validation d'envoi du formulaire.
 /**
@@ -314,7 +327,7 @@ function validationForm(){
         initRadioButtonListeners()
         isRadioButtonSelected()
         btnCheckBox()
-          return true                                  
+        return true                                  
       }     
       catch(erreur) {
         return false       
